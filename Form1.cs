@@ -496,8 +496,8 @@ namespace AutoHome2
                                                                     }
                                                                 }
                                                             }
-                                                           
-                                                            Sendata(socket, send);
+                                                           send=send + "|VOLUME|" + volumeAudio;
+                                                           Sendata(socket, send);
 ;                                                      }
                                                     }
                                                 }
@@ -1365,10 +1365,10 @@ namespace AutoHome2
         }
 
         private void btnAmanha_Click(object sender, EventArgs e)
-        {/*
+        {
             StreamWriter valor = new StreamWriter(@"C:\p\read.txt");
             valor.Write("PREVISAO|DIA|2");
-            valor.Close();*/
+            valor.Close();
             //MessageBox.Show(""+volumeAudio);
             foreach (SocketT2h st in clientSockets)
             {
@@ -1422,8 +1422,8 @@ namespace AutoHome2
             }
             else
             {
-                send = "PLAYER|STATUS|PLAYING|";
-                send = send + Path.GetFileName(Path.GetDirectoryName(music)) + "|" + System.IO.Path.GetFileNameWithoutExtension(music);
+                send = playr.howPlaying();
+                send = send + "|VOLUME|" + volumeAudio;
                 foreach (SocketT2h st in clientSockets)
                 {
                     if (st._Screen != null && st._Screen.Equals("PLAYER"))
